@@ -1,0 +1,39 @@
+html::-webkit-scrollbar {
+  width: 10px;
+}
+html::-webkit-scrollbar-track {
+  background-image: repeating-linear-gradient(
+    45deg,
+    var(--color-text) 0,
+    var(--color-text) 1px,
+    transparent 0,
+    transparent 50%
+  );
+  background-size: 10px 10px;
+}
+html::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 5px;
+  border: 2px solid black;
+  box-shadow: inset 1px 1px 5px black;
+}
+
+.post-content-list::-webkit-scrollbar {
+  width: 4px;
+}
+.post-content-list::-webkit-scrollbar-track {
+  background-image: repeating-linear-gradient(
+    45deg,
+    var(--color-text) 0,
+    var(--color-text) 1px,
+    transparent 0,
+    transparent 50%
+  );
+  background-size: 10px 10px;
+}
+.post-content-list::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 5px;
+  border: 2px solid rgb(173, 172, 172);
+  box-shadow: inset 1px 1px 5px black;
+}

@@ -1,0 +1,21 @@
+.inputSearchWrapper {
+  position: fixed;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  background-color: #f0f0f0;
+  transition: top 50ms ease-out 0s;
+}
+.hidden.inputSearchWrapper {
+  position: fixed;
+  top: -30px;
+}
+.inputBar {
+  background-color: var(--color-background-con);
+  outline: none;
+  color: var(--color-background);
+  font-size: 16px;
+  padding: 4px 0px 4px 14px;
+  border: none;
+}
