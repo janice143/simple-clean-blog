@@ -17,7 +17,8 @@ export interface IPost {
 const root = process.cwd();
 const postsDirectory = path.join(root, "source", "_posts");
 
-export function getAllPostsFromLocal() {
+// get posts from local
+export function getAllPosts() {
   const allBlogFiles = fs.readdirSync(postsDirectory);
 
   const allFileDatas = allBlogFiles.map((filename) => {
@@ -65,11 +66,12 @@ export async function uploadToDB(posts: Array<Record<any, any>>) {
   });
 }
 
-export async function getAllPosts() {
-  await mongodb();
-  const res = await Posts.find({}).sort({ date: 1 });
-  return JSON.parse(JSON.stringify(res));
-}
+// get post from mongodb
+// export async function getAllPosts() {
+//   await mongodb();
+//   const res = await Posts.find({}).sort({ date: 1 });
+//   return JSON.parse(JSON.stringify(res));
+// }
 
 export async function getPostBySlug(slug: string) {
   const posts = await getAllPosts();

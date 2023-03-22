@@ -1,10 +1,11 @@
 import Content from "@/pages/content";
 import { getAllPosts, uploadToDB } from "./api/post";
 // import mongodb from "../../config/mongodb";
+// import Posts from "../../models/post";
 import Footer from "../components/Footer";
 import Navbar from "@/components/Navbar";
 import { useState } from "react";
-// import Posts from "../../models/post";
+import Head from "next/head";
 
 const Home = ({ posts }: any) => {
   const [inputVal, setInputVal] = useState<string>();
@@ -12,18 +13,25 @@ const Home = ({ posts }: any) => {
     setInputVal(val);
   };
   return (
-    <div className="flex flex-col items-center w-full">
-      <div className="flex flex-col wrapper">
-        <Navbar handleInput={handleInput} />
-        <Content posts={posts} filter={inputVal} />
-        <Footer />
+    <>
+      <Head>
+        <title>blog | home</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
+      <div className="flex flex-col items-center w-full">
+        <div className="flex flex-col wrapper">
+          <Navbar handleInput={handleInput} />
+          <Content posts={posts} filter={inputVal} />
+          <Footer />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
 export const getStaticProps = async () => {
   const posts = await getAllPosts();
+
   // upload local file to mongodb
   // const promises: any = await uploadToDB(posts);
   // await Promise.all(promises);

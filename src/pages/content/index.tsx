@@ -1,10 +1,10 @@
 import Link from "next/link";
 
 const Content = ({ posts, filter }: any) => {
-  const curPosts = posts?.filter((post: any) => {
-    return filter ? post.title.includes(filter) : true;
-  });
-  console.log(111, curPosts);
+  const curPosts =
+    posts?.filter((post: any) => {
+      return filter ? post.title.includes(filter) : true;
+    }) || [];
 
   return (
     <main>
