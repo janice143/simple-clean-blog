@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import ReadingTime from "reading-time";
 import matter from "gray-matter";
-import mongodb from "../../../config/mongodb";
+// import mongodb from "../../../config/mongodb";
 import Posts from "../../../models/post";
 
 export interface IPost {
@@ -48,23 +48,23 @@ export function getAllPosts() {
   return posts;
 }
 
-export async function uploadToDB(posts: Array<Record<any, any>>) {
-  await mongodb();
-  return posts.map((post: Record<any, any>) => {
-    return Posts.updateOne(
-      { date: post.date },
-      {
-        $set: {
-          ...post,
-        },
-      },
-      {
-        upsert: true,
-        setDefaultsOnInsert: true,
-      }
-    );
-  });
-}
+// export async function uploadToDB(posts: Array<Record<any, any>>) {
+//   await mongodb();
+//   return posts.map((post: Record<any, any>) => {
+//     return Posts.updateOne(
+//       { date: post.date },
+//       {
+//         $set: {
+//           ...post,
+//         },
+//       },
+//       {
+//         upsert: true,
+//         setDefaultsOnInsert: true,
+//       }
+//     );
+//   });
+// }
 
 // get post from mongodb
 // export async function getAllPosts() {

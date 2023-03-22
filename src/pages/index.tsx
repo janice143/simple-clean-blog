@@ -1,5 +1,5 @@
 import Content from "@/pages/content";
-import { getAllPosts, uploadToDB } from "./api/post";
+import { getAllPosts } from "./api/post";
 // import mongodb from "../../config/mongodb";
 // import Posts from "../../models/post";
 import Footer from "../components/Footer";
