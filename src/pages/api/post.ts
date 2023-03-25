@@ -30,20 +30,22 @@ export function getAllPosts() {
     const slug = filename.replace(".md", "");
     const { data } = matterData;
     data.slug = slug;
-    data.date =
-      JSON.stringify(data.date).replace(/[\\*"*'*]/g, "") ||
-      JSON.stringify(new Date()).replace(/[\\]/g, "");
+    data.date = data.date
+      ? JSON.stringify(data.date).replace(/[\\*"*'*]/g, "")
+      : JSON.stringify(new Date()).replace(/[\\]/g, "");
     return matterData;
   });
 
-  const posts: IPost[] = allFileDatas.map((fileData) => {
-    const { data, content } = fileData;
-    return {
-      ...data,
-      content,
-      readingTime: ReadingTime(content).text,
-    };
-  });
+  const posts: IPost[] = allFileDatas
+    .map((fileData) => {
+      const { data, content } = fileData;
+      return {
+        ...data,
+        content,
+        readingTime: ReadingTime(content).text,
+      };
+    })
+    .sort((a: IPost, b: IPost) => +new Date(b.date!) - +new Date(a.date!));
 
   return posts;
 }

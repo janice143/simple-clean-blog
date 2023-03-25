@@ -8,7 +8,7 @@ interface Iprops {
 }
 const Navbar = ({ handleInput }: Iprops) => {
   const { theme, setTheme } = useTheme();
-  const [isShow, setIsShow] = useState<boolean>(false);
+  const [isShow, setIsShow] = useState(false);
   const router = useRouter();
 
   const handleGlobalClick = () => {
@@ -16,8 +16,8 @@ const Navbar = ({ handleInput }: Iprops) => {
   };
 
   useEffect(() => {
+    setTheme("light");
     document.addEventListener("click", handleGlobalClick);
-
     return () => {
       document.removeEventListener("click", handleGlobalClick);
     };
