@@ -19,7 +19,7 @@ const Post = ({ post }: { post: IPost }) => {
       <div className="flex flex-col wrapper">
         <Navbar />
         <div className="flex flex-row">
-          <article className="markdown-body" style={{ maxWidth: 700 }}>
+          <article className="markdown-body" style={{ maxWidth: 800 }}>
             {
               <div>
                 <h1>{post.title}</h1>
