@@ -3,9 +3,12 @@ import Link from "next/link";
 import styles from "@/styles/Navbar.module.css";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import { BsFillSunFill, BsFillMoonFill } from "react-icons/bs";
+
 interface Iprops {
   handleInput?: (val: string) => void;
 }
+
 const Navbar = ({ handleInput }: Iprops) => {
   const { theme, setTheme } = useTheme();
   const [isShow, setIsShow] = useState(false);
@@ -30,7 +33,7 @@ const Navbar = ({ handleInput }: Iprops) => {
     >
       <div className="flex items-center justify-between">
         <h1>
-          <Link href="/">iaine_is_also_yan</Link>
+          <Link href="/">iaine</Link>
         </h1>
         <div>
           {theme === "light" ? (
@@ -38,14 +41,14 @@ const Navbar = ({ handleInput }: Iprops) => {
               className="cursor-pointer text-xl"
               onClick={() => setTheme("dark")}
             >
-              🌞
+              <BsFillMoonFill style={{ color: "#ccc" }} />
             </span>
           ) : (
             <span
               className="cursor-pointer text-xl"
               onClick={() => setTheme("light")}
             >
-              🌛
+              <BsFillSunFill style={{ color: "#ccc" }} />
             </span>
           )}
           {router.pathname === "/" && (

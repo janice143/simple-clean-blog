@@ -40,18 +40,17 @@ const Post = ({ post }: { post: IPost }) => {
                 >
                   {post.content!}
                 </ReactMarkdown>
-                ,
               </div>
             }
           </article>
-          <div className="post-content">
+          {/* <div className="post-content">
             <div className="post-content-title">目录</div>
             <MarkNav
               source={post.content!}
               ordered={false}
               className="post-content-list"
             />
-          </div>
+          </div> */}
         </div>
 
         <Footer />

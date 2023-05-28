@@ -7,6 +7,9 @@
   --color-text-light: hsl(333deg, 100%, 45%);
   --color-text-dark: hsl(200deg, 75%, 65%);
 } */
+:root{
+  --color-subtitle-background: hsl(225deg, 25%, 95%)
+}
 :root.light {
   --color-text: hsl(333deg, 100%, 45%);
   --color-background: white;
