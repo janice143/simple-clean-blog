@@ -1,19 +1,21 @@
 import Link from "next/link";
+import styles from "@/styles/Content.module.css";
 
 const Content = ({ posts, filter }: any) => {
   const curPosts =
     posts?.filter((post: any) => {
+      if (!post || !post.title) return false;
       return filter ? post.title.includes(filter) : true;
     }) || [];
 
   return (
-    <main>
+    <main className={`${styles.contentContainer}`}>
       {curPosts.length > 0 ? (
         <ul>
           {curPosts.map((post: any) => (
             <li
               key={post.date}
-              className="posts-list"
+              className={styles.postsList}
               style={{ overflow: "hidden" }}
             >
               <Link
@@ -25,7 +27,7 @@ const Content = ({ posts, filter }: any) => {
               >
                 {post.title}
               </Link>
-              <em>{post.date.slice(0, 10)}</em>
+              <div className={styles.contentDate}>{post.date.slice(0, 10)}</div>
             </li>
           ))}
         </ul>

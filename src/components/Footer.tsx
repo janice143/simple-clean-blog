@@ -3,6 +3,7 @@ const Footer = () => {
     <div
       style={{
         margin: "20px",
+        height: "2rem",
       }}
     >
       <div className="flex items-center justify-center">

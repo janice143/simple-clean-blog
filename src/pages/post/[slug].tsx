@@ -15,8 +15,8 @@ const Post = ({ post }: { post: IPost }) => {
   }
 
   return (
-    <div className="flex flex-col items-center">
-      <div className="flex flex-col wrapper">
+    <div>
+      <div>
         <Navbar />
         <div className="flex flex-row">
           <article className="markdown-body" style={{ maxWidth: 800 }}>

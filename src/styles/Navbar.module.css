@@ -1,4 +1,44 @@
+.navBarOuterContainer{
+  position: sticky;
+  top: -1px;
+  z-index: 3;
+  background-color:var(--bg-color) ;
+  transition: background 350ms ease 0s;
+  width: 100vw;
+}
+
+.navBarContainer{
+  width: 100%;
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 2rem;
+
+}
+
+.navWrapper{
+  display: flex;
+  flex-direction: row;
+  height: 3.75rem;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px;
+}
+
+
+.navLeft{
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.navRight{
+
+}
+
 .inputSearchWrapper {
+  border: 1px solid red;
+
   position: fixed;
   top: 30px;
   left: 50%;

@@ -18,12 +18,9 @@ const Home = ({ posts }: any) => {
         <title>blog | home</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      <div
-        className="flex flex-col items-center w-full"
-        style={{ background: "var(--color-subtitle-background)" }}
-      >
-        <div className="flex flex-col wrapper">
-          <Navbar handleInput={handleInput} />
+      <div className="page-container">
+        <Navbar handleInput={handleInput} />
+        <div className="wrapper">
           <Content posts={posts} filter={inputVal} />
           <Footer />
         </div>
