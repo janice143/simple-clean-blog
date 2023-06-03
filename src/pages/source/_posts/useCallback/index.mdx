@@ -25,29 +25,23 @@ useCallback 可以缓存函数定义，只有当依赖中的数据更新后，�
 
 通过点击按钮让数字增加的时候，由于 cnt 的 state 更新，导致整个组件重新渲染，函数 increment 重新创建。
 
-```iframe
-<iframe src="https://codesandbox.io/embed/friendly-easley-m8f49g?fontsize=14&hidenavigation=1&module=%2Fsrc%2Fpages%2Fnormal-fn.js&theme=dark"
-  style="width:100%; height:300px; border:0; border-radius: 4px; overflow:hidden;"
+[https://codesandbox.io/s/friendly-easley-m8f49g?file=/src/pages/useCallback-case.js:72-87](https://codesandbox.io/s/friendly-easley-m8f49g?file=/src/pages/useCallback-case.js:72-87)
+
+<iframe
+  src="https://codesandbox.io/embed/friendly-easley-m8f49g?fontsize=14&hidenavigation=1&theme=dark"
+  style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
   title="friendly-easley-m8f49g"
   allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
   sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>
-```
 
-1. 普通函数包裹了 useCallback
+2. 普通函数包裹了 useCallback
 
 increment 函数被 useCallback 包裹，当点击按钮时，cnt 更新，组件重新渲染。但是 cnt 加到 1 后就无法继续增长。
 
 这是因为 useCallback 缓存了 increment 函数，每次点击按钮的时候，使用的是上一次缓存的函数，这个时候 cnt 的值都是 0，所以后面点击按钮时， cnt 无法继续往上加。
 
-```iframe
-<iframe src="https://codesandbox.io/embed/friendly-easley-m8f49g?fontsize=14&hidenavigation=1&initialpath=useCallback-case&module=%2Fsrc%2Fpages%2FuseCallback-case.js&theme=dark"
-  style="width:100%; height:300px; border:0; border-radius: 4px; overflow:hidden;"
-  title="friendly-easley-m8f49g"
-  allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-  sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-></iframe>
-```
+[https://codesandbox.io/s/friendly-easley-m8f49g?file=/src/pages/useCallback-case.js:72-87](https://codesandbox.io/s/friendly-easley-m8f49g?file=/src/pages/useCallback-case.js:72-87)
 
 如果想让 cnt 继续累加，可以在 useCallback 的第二个参数上绑定依赖：`[cnt]`。
 
@@ -88,20 +82,12 @@ shippingForm 是一个人为增加了性能的组件，每次 count 增加的时
 
 每次切换白天/黑夜背景的时候，theme 的状态更新导致 productPage 重新渲染，由于 useCallback 的使用，handleSubmit 函数没有重新创建，所以传递给子组件 ShippingForm 的 props 没有改变，由于 React.memo 的使用，ShippingForm 没有重新渲染。
 
-```aside
 <aside>
-  💡  注：React.memo的用法是用来包裹整个组件，当props参数都不变（引用不变）时，组件不会重新渲染。
+  💡
+  注：React.memo的用法是用来包裹整个组件，当props参数都不变（引用不变）时，组件不会重新渲染。
 </aside>
-```
 
-```iframe
-<iframe src="https://codesandbox.io/embed/elegant-chatelet-5urqn7?fontsize=14&hidenavigation=1&module=%2FProductPage.js&theme=dark"
-  style="width:100%; height:300px; border:0; border-radius: 4px; overflow:hidden;"
-  title="elegant-chatelet-5urqn7"
-  allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-  sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-></iframe>
-```
+[https://codesandbox.io/s/elegant-chatelet-5urqn7?file=/ProductPage.js](https://codesandbox.io/s/elegant-chatelet-5urqn7?file=/ProductPage.js)
 
 2. 减少函数重新创建
 
@@ -117,6 +103,6 @@ state 状态变化，导致页面重新渲染，为了减少函数创建，可�
 
 ## 参考资料
 
-1. [react 文档官方示例](https://react.dev/reference/react/useCallback#examples-rerendering)
+1. react 文档官方示例：[https://react.dev/reference/react/useCallback#examples-rerendering](https://react.dev/reference/react/useCallback#examples-rerendering)
 
-2. [Better React Performance – When to Use the useCallback vs useMemo Hook](https://www.freecodecamp.org/news/better-react-performance-usecallback-vs-usememo/)
+2. Better React Performance – When to Use the useCallback vs useMemo Hook：[https://www.freecodecamp.org/news/better-react-performance-usecallback-vs-usememo/](https://www.freecodecamp.org/news/better-react-performance-usecallback-vs-usememo/)

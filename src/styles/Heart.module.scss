@@ -1,0 +1,26 @@
+.sparkle {
+  position: absolute;
+  top: 10px;
+  left: -10px;
+  transition: all 500ms ease;
+}
+
+.animate {
+  transform: scale(1.5);
+}
+.hide {
+  opacity: 0;
+  transition: all 500ms ease;
+}
+
+.heartNum {
+  font-weight: 600;
+  color: rgb(255, 10, 120);
+}
+.heartFlex {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  justify-content: center;
+  justify-content: space-between;
+}

@@ -1,0 +1,20 @@
+.smHeart {
+  display: none;
+}
+
+.lgHeart {
+  position: sticky;
+  top: 300px;
+  padding: 0 6rem;
+  text-align: right;
+}
+
+@media screen and (max-width: 1100px) {
+  .smHeart {
+    display: block;
+  }
+
+  .lgHeart {
+    opacity: 0;
+  }
+}
