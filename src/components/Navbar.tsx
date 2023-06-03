@@ -1,9 +1,11 @@
+import logo from "@/assets/icon-48.png";
+import styles from "@/styles/Navbar.module.scss";
 import { useTheme } from "next-themes";
+import Image from "next/image";
 import Link from "next/link";
-import styles from "@/styles/Navbar.module.css";
-import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { BsFillSunFill, BsFillMoonFill, BsSearch } from "react-icons/bs";
+import { useEffect, useState } from "react";
+import { BsFillMoonFill, BsFillSunFill, BsSearch } from "react-icons/bs";
 
 interface Iprops {
   handleInput?: (val: string) => void;
@@ -31,15 +33,11 @@ const Navbar = ({ handleInput }: Iprops) => {
       <div className={styles.navBarContainer}>
         <header className={styles.navWrapper}>
           <nav className={styles.navLeft}>
-            <h1>
-              <Link href="/">iaine</Link>
-            </h1>
-            <div className="link">
-              <Link href="/">posts</Link>
-            </div>
-            <div className="link">
-              <Link href="/about">about me</Link>
-            </div>
+            <Link href="/" className={styles.navTitle}>
+              <Image width={30} src={logo} alt="iaine" />
+            </Link>
+            <Link href="/">首页</Link>
+            <Link href="/about">关于我</Link>
           </nav>
 
           <div className={styles.navRight}>

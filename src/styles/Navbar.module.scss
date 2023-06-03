@@ -1,0 +1,65 @@
+.navBarOuterContainer {
+  position: sticky;
+  top: -1px;
+  z-index: 3;
+  background-color: var(--bg-color);
+  transition: background 350ms ease 0s;
+  width: 100%;
+
+  .navBarContainer {
+    width: 100%;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2rem;
+  }
+
+  .navWrapper {
+    display: flex;
+    flex-direction: row;
+    height: 3.75rem;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px;
+  }
+
+  .navLeft {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    .navTitle {
+    }
+  }
+
+  .inputSearchWrapper {
+    position: fixed;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    background-color: var(--bg-color-dark);
+
+    transition: top 50ms ease-out 0s;
+    overflow: hidden;
+    border: 1px solid var(--todo-bg-color);
+
+    height: 50px;
+    width: 300px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+  }
+  .hidden.inputSearchWrapper {
+    position: fixed;
+    top: -60px;
+  }
+  .inputBar {
+    background-color: var(--bg-color-dark);
+    color: var(--body-text-color);
+    font-size: 16px;
+    padding: 4px 0px 4px 14px;
+    outline: none;
+    border: none;
+  }
+}

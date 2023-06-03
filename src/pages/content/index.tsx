@@ -1,5 +1,5 @@
+import styles from "@/styles/Content.module.scss";
 import Link from "next/link";
-import styles from "@/styles/Content.module.css";
 
 const Content = ({ posts, filter }: any) => {
   const curPosts =
@@ -11,7 +11,7 @@ const Content = ({ posts, filter }: any) => {
   return (
     <main className={`${styles.contentContainer}`}>
       {curPosts.length > 0 ? (
-        <ul>
+        <ul className={styles.main}>
           {curPosts.map((post: any) => (
             <li
               key={post.date}
