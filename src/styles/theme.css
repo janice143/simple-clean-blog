@@ -561,7 +561,6 @@ a,
 .md-def-url {
   color: var(--url-text-color);
   text-decoration: none;
-  border-bottom: 0.05em solid;
   border-color: var(--url-underline-color);
   transition: all 0.1s ease-in;
 }
