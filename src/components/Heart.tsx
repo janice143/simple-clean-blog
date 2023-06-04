@@ -1,19 +1,41 @@
 import styles from "@/styles/Heart.module.scss";
+import Image from "next/image";
 
-import { CSSProperties, useState } from "react";
-const [MAX_NUM, MIN_NUM] = [42, 0];
+import { CSSProperties, useEffect, useRef, useState } from "react";
+const [MAX_NUM, MIN_NUM, factor, addBase] = [42, 1, 10, 101];
+enum STATUS_ENUM {
+  ADD = "+1",
+  SUB = "-1",
+  MAX = "MAX",
+}
 
 const Heart = ({ style }: { style?: CSSProperties }) => {
   const [isSmile, setIsSmile] = useState(true);
   const [visible, setVisible] = useState(false);
-  const [num, setNum] = useState(MIN_NUM);
+  const [statusShow, setStatusShow] = useState(false);
+  const [num, setNum] = useState(MIN_NUM + addBase);
+  const [status, setStatus] = useState<STATUS_ENUM>();
+  const t = useRef<any>(null);
+
+  useEffect(() => {
+    if (t.current) clearTimeout(t.current);
+
+    setStatusShow(true);
+    t.current = setTimeout(() => {
+      setStatusShow(false);
+    }, 500);
+
+    return () => {
+      clearTimeout(t.current);
+    };
+  }, [num]);
 
   const handleClick = () => {
     !isSmile && setIsSmile(true);
-    if (num === MAX_NUM) return;
-
+    if (num === MAX_NUM * factor) return setStatus(STATUS_ENUM.MAX);
+    setStatus(STATUS_ENUM.ADD);
     setNum(num + 1);
-    if (num === MAX_NUM - 1) {
+    if (num === MAX_NUM * factor - 1) {
       setVisible(true);
       hideSparkle();
     }
@@ -27,7 +49,8 @@ const Heart = ({ style }: { style?: CSSProperties }) => {
 
   const handleContextClick = (e: any) => {
     e.preventDefault();
-    if (num === MIN_NUM) return;
+    if (num === MIN_NUM * factor) return;
+    setStatus(STATUS_ENUM.SUB);
     isSmile && setIsSmile(false);
     setNum(num - 1);
   };
@@ -40,6 +63,7 @@ const Heart = ({ style }: { style?: CSSProperties }) => {
         height: 60,
         ...style,
       }}
+      className={styles.heartContainer}
     >
       <div
         className={styles.heartFlex}
@@ -47,7 +71,11 @@ const Heart = ({ style }: { style?: CSSProperties }) => {
         onContextMenu={(e) => handleContextClick(e)}
       >
         <div style={{ position: "relative" }}>
-          {isSmile ? <HeartSmile num={num} /> : <HeartSad num={num} />}
+          {isSmile ? (
+            <HeartSmile num={num / factor} />
+          ) : (
+            <HeartSad num={num / factor} />
+          )}
           <div
             className={`${styles.sparkle} ${
               visible ? styles.animate : styles.hide
@@ -58,6 +86,7 @@ const Heart = ({ style }: { style?: CSSProperties }) => {
         </div>
         <span className={styles.heartNum}>{num}</span>
       </div>
+      {statusShow && <span className={`${styles.numStatus}`}>{status}</span>}
     </div>
   );
 };
@@ -440,68 +469,79 @@ Q 25 25.2 30 30
 
 export const Sparkle = () => {
   return (
-    <div style={{ width: "48px", height: "48px" }}>
-      <img
+    <div
+      style={{ width: "48px", height: "48px" }}
+      className={styles.sparkleUnSel}
+    >
+      <Image
         src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjIiIGhlaWdodD0iMjEiIHZpZXdCb3g9IjAgMCAyMiAyMSIgZmlsbD0ibm9u%0D%0AZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTMuNTI5NDIg%0D%0AMThMMTguMzUyOSAzLjE3NjQ1TTMuNTI5NDIgMy4xNzY0NUwxMC45NDEyIDEwLjU4ODJMMTguMzUy%0D%0AOSAxOCIgc3Ryb2tlPSIjRkZFQjMzIiBzdHJva2Utd2lkdGg9IjYiIHN0cm9rZS1saW5lY2FwPSJy%0D%0Ab3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8L3N2Zz4K"
+        alt=""
+        width={10}
+        height={10}
         style={{
-          width: "10px",
-          height: "10px",
           transform: "translate(12.4847px, 24.5027px) rotate(13deg)",
         }}
       />
-      <img
+      <Image
         src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjIiIGhlaWdodD0iMjEiIHZpZXdCb3g9IjAgMCAyMiAyMSIgZmlsbD0ibm9u%0D%0AZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTMuNTI5NDIg%0D%0AMThMMTguMzUyOSAzLjE3NjQ1TTMuNTI5NDIgMy4xNzY0NUwxMC45NDEyIDEwLjU4ODJMMTguMzUy%0D%0AOSAxOCIgc3Ryb2tlPSIjRkZFQjMzIiBzdHJva2Utd2lkdGg9IjYiIHN0cm9rZS1saW5lY2FwPSJy%0D%0Ab3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8L3N2Zz4K"
+        alt=""
+        width={10}
+        height={10}
         style={{
-          width: "10px",
-          height: "10px",
           transform: "translate(-7.27681px, 13.6857px) rotate(97deg)",
         }}
       />
-      <img
+      <Image
         src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzMiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAzMyAxOCIgZmlsbD0ibm9u%0D%0AZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTI5LjY4MjQg%0D%0AM0wyMC43ODgzIDE0LjExNzZMMTEuODk0MSAzTDMuMDAwMDIgMTQuMTE3NiIgc3Ryb2tlPSIjRkYy%0D%0AN0ZGIiBzdHJva2Utd2lkdGg9IjYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVq%0D%0Ab2luPSJyb3VuZCIvPgo8L3N2Zz4K"
+        alt=""
+        width={16.5}
+        height={9}
         style={{
-          width: "16.5px",
-          height: "9px",
           transform: "translate(-36.4096px, 13.9764px) rotate(129deg)",
         }}
       />
-      <img
+      <Image
         src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxMiAxOCIgZmlsbD0ibm9u%0D%0AZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjEyIiBo%0D%0AZWlnaHQ9IjE4IiBmaWxsPSIjNUE3RkZGIi8+Cjwvc3ZnPgo="
+        alt=""
+        width={6}
+        height={9}
         style={{
-          width: "6px",
-          height: "9px",
           transform: "translate(-54.7919px, 15.7113px) rotate(66deg)",
         }}
       />
-      <img
+      <Image
         src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxMiAxOCIgZmlsbD0ibm9u%0D%0AZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjEyIiBo%0D%0AZWlnaHQ9IjE4IiBmaWxsPSIjNUE3RkZGIi8+Cjwvc3ZnPgo="
+        alt=""
+        width={6}
+        height={9}
         style={{
-          width: "6px",
-          height: "9px",
           transform: "translate(-15.733px, -19.4286px) rotate(126deg)",
         }}
       />
-      <img
+      <Image
         src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjIiIGhlaWdodD0iMjEiIHZpZXdCb3g9IjAgMCAyMiAyMSIgZmlsbD0ibm9u%0D%0AZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTMuNTQzOTcg%0D%0AMTcuNDExMUMzLjE4NjY4IDE1LjQ0NzkgMy4zMzIwOSAxMy40MjYxIDMuOTY2NjYgMTEuNTM0MkM0%0D%0ALjYwMTIyIDkuNjQyMzEgNS43MDQzIDcuOTQxNzkgNy4xNzMxNCA2LjU5MTA1QzguNjQxOTggNS4y%0D%0ANDAzMSAxMC40Mjg4IDQuMjgzMyAxMi4zNjcxIDMuODA5MTdDMTQuMzA1NSAzLjMzNTAzIDE2LjMz%0D%0AMjMgMy4zNTkyIDE4LjI1ODggMy44Nzk0MiIgc3Ryb2tlPSIjMzJGRjk4IiBzdHJva2Utd2lkdGg9%0D%0AIjYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8L3N2%0D%0AZz4K"
+        alt=""
+        width={8}
+        height={7}
         style={{
-          width: "8px",
-          height: "7px",
           transform: "translate(-12.4037px, -43.2568px) rotate(92deg)",
         }}
       />
-      <img
+      <Image
         src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxMiAxOCIgZmlsbD0ibm9u%0D%0AZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjEyIiBo%0D%0AZWlnaHQ9IjE4IiBmaWxsPSIjNUE3RkZGIi8+Cjwvc3ZnPgo="
+        alt=""
+        width={6}
+        height={9}
         style={{
-          width: "6px",
-          height: "9px",
           transform: "translate(14.7527px, -55.0578px) rotate(153deg)",
         }}
       />
-      <img
+      <Image
         src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjIiIGhlaWdodD0iMjEiIHZpZXdCb3g9IjAgMCAyMiAyMSIgZmlsbD0ibm9u%0D%0AZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTMuNTI5NDIg%0D%0AMThMMTguMzUyOSAzLjE3NjQ1TTMuNTI5NDIgMy4xNzY0NUwxMC45NDEyIDEwLjU4ODJMMTguMzUy%0D%0AOSAxOCIgc3Ryb2tlPSIjRkZFQjMzIiBzdHJva2Utd2lkdGg9IjYiIHN0cm9rZS1saW5lY2FwPSJy%0D%0Ab3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8L3N2Zz4K"
+        alt=""
+        width={10}
+        height={10}
         style={{
-          width: "10px",
-          height: "10px",
           transform: "translate(58.5602px, -7.19029px) rotate(37deg)",
         }}
       />

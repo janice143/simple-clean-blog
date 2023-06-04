@@ -1,8 +1,6 @@
-/* @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap"); */
-/* @import "./github-markdown.css"; */
-/* @import "./scroll-bar.css"; */
-/* @import './themes/classic/notion-light-classic.css'; */
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap");
 @import "./theme.css";
+@import "animate.css";
 
 :root {
   --color-subtitle-background: hsl(225deg, 25%, 95%);

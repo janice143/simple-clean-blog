@@ -420,6 +420,7 @@ aside {
   padding: 1rem 1rem;
   background-color: var(--select-text-bg-color);
   color: var(--body-text-color);
+  white-space: nowrap;
 }
 
 .markdown-body {
@@ -428,11 +429,11 @@ aside {
   padding: 30px;
 }
 
-@media only screen and (min-width: 1400px) {
+/* @media only screen and (min-width: 1400px) {
   .markdown-body {
     max-width: 860px;
   }
-}
+} */
 
 code {
   font-family: Menlo, Monaco, "Courier New", monospace !important;
@@ -442,7 +443,7 @@ code {
 
 @media only screen and (min-width: 1800px) {
   .markdown-body {
-    max-width: 1200px;
+    max-width: 860px;
   }
 }
 

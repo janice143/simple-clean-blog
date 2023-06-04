@@ -5,10 +5,15 @@
 .lgHeart {
   position: sticky;
   top: 300px;
-  padding: 0 6rem;
+  padding: 0 20vw;
   text-align: right;
 }
 
+@media screen and (max-width: 1980px) and (min-width: 1100px) {
+  .lgHeart {
+    padding: 0 200px;
+  }
+}
 @media screen and (max-width: 1100px) {
   .smHeart {
     display: block;

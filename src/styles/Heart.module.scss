@@ -1,3 +1,29 @@
+.heartContainer {
+  transition: all 500ms ease;
+
+  &:hover {
+    animation: tilt-shaking 1s;
+  }
+}
+
+@keyframes tilt-shaking {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  25% {
+    transform: rotate(5deg) scale(1.05);
+  }
+  50% {
+    transform: rotate(0eg) scale(1.1);
+  }
+  75% {
+    transform: rotate(-5deg) scale(1.05);
+  }
+  100% {
+    transform: rotate(0deg) scale(1);
+  }
+}
+
 .sparkle {
   position: absolute;
   top: 10px;
@@ -23,4 +49,42 @@
   height: 100%;
   justify-content: center;
   justify-content: space-between;
+  cursor: pointer;
+}
+
+.sparkleUnSel {
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer */
+  user-select: none;
+}
+
+.numStatus {
+  font-size: 0.8rem;
+  color: rgb(255, 10, 120);
+
+  position: absolute;
+  top: 10px;
+  right: -15px;
+  width: 30px;
+  animation: fade-up 1s forwards;
+}
+
+/* Define the animation */
+@keyframes fade-up {
+  0% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 0.75;
+    transform: translateY(-4px);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translateY(-8px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
 }
