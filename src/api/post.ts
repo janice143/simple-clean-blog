@@ -1,9 +1,8 @@
 import fs from "fs";
+import matter from "gray-matter";
 import path from "path";
 import ReadingTime from "reading-time";
-import matter from "gray-matter";
 // import mongodb from "../../../config/mongodb";
-import Posts from "../../../models/post";
 
 export interface IPost {
   title?: string;

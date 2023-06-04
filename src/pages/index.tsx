@@ -1,8 +1,8 @@
 import Content from "@/pages/content";
 import Head from "next/head";
 import { useContext } from "react";
-import { getAllPosts } from "./api/post";
-import { inputValContext } from "./context/inputValContext";
+import { getAllPosts } from "../api/post";
+import { inputValContext } from "../context/inputValContext";
 
 const Home = ({ posts }: any) => {
   const inputVal = useContext(inputValContext);

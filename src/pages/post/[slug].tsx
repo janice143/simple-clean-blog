@@ -4,7 +4,7 @@ import styles from "@/styles/Post.module.scss";
 import ErrorPage from "next/error";
 import { useRouter } from "next/router";
 import ReactMarkdown from "react-markdown";
-import { IPost, getAllPosts, getPostBySlug } from "../api/post";
+import { IPost, getAllPosts, getPostBySlug } from "../../api/post";
 
 const Post = ({ post }: { post: IPost }) => {
   const router = useRouter();
